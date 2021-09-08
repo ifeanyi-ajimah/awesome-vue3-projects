@@ -3,7 +3,7 @@
     <h1 class="w-full text-center my-4 font-bold"> Markdown App  </h1>
     <section class="flex m-auto w-10/12  h-screen">
         <article class="w-1/2 border"> 
-            <textarea class="w-full h-screen" :value="text" @input="updateValue">
+            <textarea class="w-full h-screen" :value="text" @input="updateValue" ref="markDownTextArea">
 
             </textarea>
          </article>
@@ -44,6 +44,9 @@ computed:{
     markedText(){
         return marked(this.text);
     }
+},
+mounted(){
+    this.$refs.markDownTextArea.focus()
 }
 }
 </script>

@@ -12,7 +12,7 @@
       </li>
     </ul>
     <form class="mt-10" @submit.prevent="addHero">
-    <input class="border rounded" v-model="newHero" placeholder="Enter new hero "/> 
+    <input class="border rounded" v-model="newHero" placeholder="Enter new hero" ref="newHeroRef"/> 
     <button class="border rounded text-small text-white bg-gradient-to-r from-red-700 to-pink-500" type="submit" > Add Hero </button>
     </form>  
   </div>
@@ -51,6 +51,9 @@ export default {
     remove(index){
       this.dcHeros = this.dcHeros.filter((hero, i) => i != index  );
     }
+  },
+  mounted(){
+    this.$refs.newHeroRef.focus()
   }
  
 }
