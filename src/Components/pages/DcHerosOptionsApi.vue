@@ -3,7 +3,7 @@
   <div class="m-auto">
     <h2 v-show="false"> Another banger </h2>
     <h1 class="text-2xl text-center"> DC heros  {{ herosCount }} </h1>
-    <p v-html="title">  </p>
+    <p v-text="title">  </p>
     <ul>
       <li class="flex justify-between" v-for="(hero, index) in dcHeros" :key="hero.name">
           <div> {{ hero.name }} 
@@ -19,59 +19,42 @@
 </template>
 
 <script>
-import {onMounted, ref} from "vue"; 
+
 export default {
   name: 'DcHero',
-  setup(){
-      const title = "<h1> <b> A Bold title inside a h1 tag</b></h1>";
-      const  newHero =  ref("");
-      const newHeroRef = ref("");
-      const dcHeros = ref ([
+  
+  data(){
+    return {
+      title : "<h1> a title inside a h1 tag</h1>",
+      newHero: "",
+      dcHeros: [
         {name : "SuperGirl"},
         {name : "Flash"},
         {name : "Batman"},
         {name : "Arrow"},
         {name : "SuperMan"},
-      ]);
-      
-      
-      // const heroCount = computed({
-      //    get: () => dcHeros.value.length,
-      // });
-
-      onMounted( () => {
-         newHeroRef.value.focus()
-      });
-
-
-    function remove(index){
-      dcHeros.value = dcHeros.value.filter((hero, i) => i != index  );
+      ],
     }
-
-    function addHero(){
-      if(newHero.value !== ""){
-        dcHeros.value.unshift({name : newHero.value});
-        newHero.value = "";
-      }
-    }
-
-    return {title, dcHeros, newHero, remove, addHero, newHeroRef }
-
   },
-
   computed:{
-    herosCount() {
-      return this.dcHeros.length 
-    } ,
-    // research why I can't use fat arrow function in vue computed property
-    // herosCount : () => {
-    //   return  this.dcHeros.length
-    // }
-    
-   
+    herosCount(){
+      return  this.dcHeros.length;
+    }
+  },
+  methods:{
+    addHero(){
+      if(this.newHero !== ""){
+        this.dcHeros.unshift({name : this.newHero});
+        this.newHero = "";
+      }
+    },
+    remove(index){
+      this.dcHeros = this.dcHeros.filter((hero, i) => i != index  );
+    }
+  },
+  mounted(){
+    this.$refs.newHeroRef.focus()
   }
-
-
  
 }
 </script>

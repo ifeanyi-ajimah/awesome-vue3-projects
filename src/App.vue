@@ -1,5 +1,5 @@
 <template>
-   <AppHeader @open-login-modal="isLoginOpen = true"/>
+   <AppHeader :isloggedin="isLoggedIn" :user="authUser" @open-login-modal="isLoginOpen = true"/>
 <div  class="w-full flex">
    <router-view></router-view>
 </div>
