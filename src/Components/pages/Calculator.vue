@@ -30,7 +30,9 @@
 </template>
 
 <script>
-import {onMounted, onUnmounted, ref} from "vue";
+// import {onMounted, onUnmounted, ref} from "vue";
+import {ref} from "vue";
+import useWindowEvent from '../../utilities/composition/useWindowEvent'
 export default {
     setup(){
 
@@ -84,19 +86,11 @@ export default {
             currentNumber.value = "";
         }
 
-        // const handleKeydown = () => pressed(e.key);
+        // const handleKeydown = (e) => pressed(e.key);
         function handleKeydown(e){
             pressed(e.key)
         }
-
-        //registering key binding
-        onMounted( ()=> window.addEventListener('keydown',handleKeydown) );
-    
-        onUnmounted( () => {
-            window.removeEventListener("keydown", handleKeydown);
-        })
-
-
+        useWindowEvent("keydown",handleKeydown);
 
         return {currentNumber, pressed, selectedOperation, previousNumber };
     }

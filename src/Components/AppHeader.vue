@@ -31,6 +31,7 @@ export default {
         {title: "MARKDOWN ", to:"/markdown"},
         {title: "CALCULATOR ", to:"/calculator"},
         {title: "MODAL ", to:"/reuseable-modal"},
+        {title: "Chat", to:"/chat"},
         {title: "Slider  ", to:"/slider-carousel"},
       ],
     }
